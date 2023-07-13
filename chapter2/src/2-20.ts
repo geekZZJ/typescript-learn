@@ -29,3 +29,5 @@ function info(name: string, age: number, ...rest: any): number {
   console.log("info  name:", name);
   return 3;
 }
+
+export { info };
