@@ -5,8 +5,8 @@ type Message = {
   sendmessage: string;
 };
 enum MessageType {
-  "Image" = 1,
-  "Audio" = 2,
+  "Image" = "Image",
+  "Audio" = "Audio",
 }
 const messages: Message[] = [
   {
@@ -35,7 +35,9 @@ const messages: Message[] = [
     sendmessage: "今晚王牌对王牌节目咋样?",
   },
 ];
-
+// 重载签名
+function searchMsg(condition: MessageType): Message[];
+function searchMsg(condition: number): Message | undefined;
 function searchMsg(
   condition: MessageType | number
 ): Message | undefined | Message[] {
@@ -46,6 +48,9 @@ function searchMsg(
   }
 }
 
-(searchMsg(1) as Message).id;
+searchMsg(1)?.id;
+searchMsg(MessageType.Image).forEach((msg) => {
+  console.log(msg);
+});
 
 export {};
